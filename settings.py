@@ -10,7 +10,7 @@ CHECKPOINT_DIR = os.path.join(BASE_DIR, "checkpoints")
 OUTPUT_ROOT_DIR = os.path.join(BASE_DIR, "outputs")
 OUTPUT_DIR = os.path.join(OUTPUT_ROOT_DIR, SCRIPT_NAME)
 
-MODEL_PATH = os.path.join(CHECKPOINT_DIR, "best_unet_dev_overfit_bad.pth")
+MODEL_PATH = os.path.join(CHECKPOINT_DIR, "best_unet_powerful.pth")
 
 # общий режим работы:
 # "train" - обучение
