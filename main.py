@@ -3,12 +3,12 @@ import random
 import torch
 from torch.utils.data import DataLoader
 
-from coursework.coursework.dataset_dicom import PneumothoraxDicomDataset
-from coursework.coursework.model import UNet
-from coursework.coursework.predict_dicom import predict_single
-from coursework.coursework.settings import *
-from coursework.coursework.train_dicom import train_model, load_checkpoint
-from coursework.coursework.utils import load_csv, get_image_id_column, get_mask_column, build_dicom_map, set_seed, \
+from dataset_dicom import PneumothoraxDicomDataset
+from model import UNet
+from predict_dicom import predict_single
+from settings import *
+from train_dicom import train_model, load_checkpoint
+from utils import load_csv, get_image_id_column, get_mask_column, build_dicom_map, set_seed, \
     ensure_dirs
 
 

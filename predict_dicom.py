@@ -4,8 +4,8 @@ import cv2
 import numpy as np
 import torch
 
-from coursework.coursework.settings import OUTPUT_ROOT_DIR
-from coursework.coursework.utils import read_dicom_image, save_overlay, build_gt_mask, save_gt_overlay
+from settings import OUTPUT_ROOT_DIR
+from utils import read_dicom_image, save_overlay, build_gt_mask, save_gt_overlay
 
 
 def predict_single(

@@ -6,7 +6,7 @@ import pydicom
 import numpy as np
 import pandas as pd
 
-from coursework.coursework.settings import CHECKPOINT_DIR, OUTPUT_ROOT_DIR
+from settings import CHECKPOINT_DIR, OUTPUT_ROOT_DIR
 
 
 def set_seed(seed=42):

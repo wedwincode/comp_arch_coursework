@@ -1,9 +1,9 @@
 import torch
 from tqdm import tqdm
 
-from coursework.coursework.dataset_dicom import BCEDiceLoss
-from coursework.coursework.settings import LEARNING_RATE, MODEL_PATH
-from coursework.coursework.utils import dice_coeff, iou_score
+from dataset_dicom import BCEDiceLoss
+from settings import LEARNING_RATE, MODEL_PATH
+from utils import dice_coeff, iou_score
 
 
 def train_one_epoch(model, loader, optimizer, criterion, device):

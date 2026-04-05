@@ -3,7 +3,7 @@ import numpy as np
 import torch
 from torch.utils.data import Dataset
 
-from coursework.coursework.utils import read_dicom_image, rle_decode
+from utils import read_dicom_image, rle_decode
 
 
 class PneumothoraxDicomDataset(Dataset):
