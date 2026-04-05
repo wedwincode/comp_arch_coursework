@@ -15,7 +15,7 @@ MODEL_PATH = os.path.join(CHECKPOINT_DIR, "best_unet_powerful.pth")
 # общий режим работы:
 # "train" - обучение
 # "predict" - только предсказание по уже обученной модели
-RUN_MODE = "train"
+RUN_MODE = "predict"
 
 # режимы обучения:
 # "overfit" - проверка, может ли сеть заучить 10 positive снимков
@@ -26,7 +26,7 @@ MODE = "balanced"
 # "positive" - случайная положительная
 # "negative" - случайная отрицательная
 # "random" - случайная любая
-PREDICT_SOURCE = "positive"
+PREDICT_SOURCE = "random"
 
 # параметры overfit
 OVERFIT_POSITIVE_COUNT = 10

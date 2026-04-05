@@ -5,7 +5,7 @@ import numpy as np
 import torch
 
 from settings import OUTPUT_ROOT_DIR
-from utils import read_dicom_image, save_overlay, build_gt_mask, save_gt_overlay
+from utils import read_dicom_image, save_overlay, build_gt_mask, save_gt_overlay, save_probability_map, save_mask
 
 
 def predict_single(
@@ -40,13 +40,13 @@ def predict_single(
     output_dir = os.path.join(OUTPUT_ROOT_DIR, prefix)
     os.makedirs(output_dir, exist_ok=True)
     # original_path = os.path.join(OUTPUT_DIR, f"{prefix}_original.png")
-    # mask_path = os.path.join(OUTPUT_DIR, f"{prefix}_mask.png")
-    # prob_path = os.path.join(OUTPUT_DIR, f"{prefix}_probability.png")
+    mask_path = os.path.join(output_dir, f"{prefix}_mask.png")
+    prob_path = os.path.join(output_dir, f"{prefix}_probability.png")
     overlay_path = os.path.join(output_dir, f"{prefix}_prediction.png")
 
     # save_original_image(original, original_path)
-    # save_mask(pred.cpu(), mask_path)
-    # save_probability_map(prob.cpu(), prob_path)
+    save_mask(pred.cpu(), mask_path)
+    save_probability_map(prob.cpu(), prob_path)
     save_overlay(original, pred.cpu(), overlay_path)
 
     # сохраняем эталонную маску и эталонный overlay, если есть данные

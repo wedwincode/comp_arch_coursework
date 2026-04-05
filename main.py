@@ -9,7 +9,7 @@ from predict_dicom import predict_single
 from settings import *
 from train_dicom import train_model, load_checkpoint
 from utils import load_csv, get_image_id_column, get_mask_column, build_dicom_map, set_seed, \
-    ensure_dirs
+    ensure_dirs, prepare_pos_ids, prepare_neg_ids
 
 
 def prepare_data():
@@ -191,13 +191,12 @@ def main():
 
         if not os.path.exists(MODEL_PATH):
             raise FileNotFoundError(f"trained model not found: {MODEL_PATH}")
-
         test_id = choose_predict_id(
             predict_source=PREDICT_SOURCE,
-            positive_ids=positive_ids,
-            negative_ids=negative_ids
+            positive_ids=prepare_pos_ids(positive_ids),
+            negative_ids=prepare_neg_ids(negative_ids)
         )
-
+        prefix = "pos" if test_id in positive_ids else "neg"
         test_path = dicom_map[test_id]
 
         model = UNet(in_channels=1, out_channels=1, base_channels=16)
@@ -209,7 +208,7 @@ def main():
             device=device,
             image_size=image_size,
             threshold=PRED_THRESHOLD,
-            prefix=f"{PREDICT_SOURCE}_{test_id}",
+            prefix=f"{prefix}_{test_id}",
             image_id=test_id,
             dicom_map=dicom_map,
             rle_map=rle_map

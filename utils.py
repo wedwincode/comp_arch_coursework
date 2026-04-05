@@ -61,6 +61,11 @@ def build_dicom_map(dicom_dir):
                 dicom_map[image_id] = full_path
     return dicom_map
 
+def prepare_pos_ids(positive_ids):
+    return [v for i, v in enumerate(positive_ids[:20]) if i in (0, 4, 7, 11, 12, 16, 17, 18)]
+
+def prepare_neg_ids(negative_ids):
+    return [v for i, v in enumerate(negative_ids[:20]) if i in (4, 5, 6, 7, 13, 18, 19)]
 
 def rle_decode(mask_rle, shape):
     mask = np.zeros(shape[0] * shape[1], dtype=np.uint8)
@@ -79,24 +84,6 @@ def rle_decode(mask_rle, shape):
         current_position += length
 
     return mask.reshape(shape).T
-
-# def rle_decode(mask_rle, shape):
-#     h, w = shape
-#     mask = np.zeros(h * w, dtype=np.uint8)
-#
-#     if pd.isna(mask_rle) or str(mask_rle).strip() == "-1":
-#         return mask.reshape((h, w), order="F")
-#
-#     s = np.asarray(str(mask_rle).split(), dtype=int)
-#     starts = s[0::2] - 1
-#     lengths = s[1::2]
-#     ends = starts + lengths
-#
-#     for lo, hi in zip(starts, ends):
-#         mask[lo:hi] = 1
-#
-#     return mask.reshape((h, w), order="F")
-
 
 def read_dicom_image(dicom_path):
     ds = pydicom.dcmread(dicom_path)
